@@ -11,13 +11,8 @@ source("src/prep_data.R")
 source("src/plot_cartogram.R")
 
 ## dates for geofacet map
-<<<<<<< HEAD
-date_start <- as.Date("2021-09-01")
-date_end <- as.Date("2021-09-30")
-=======
 date_start <- as.Date("2022-04-01")
 date_end <- as.Date("2022-05-01") # Need to keep as first date of following month for labeling purposes
->>>>>>> a8e89f30460457029144756ff38029af713c2002
 
 # wet to dry color scale
 pal_wetdry <- c("#002D5E", "#0C7182", "#A7D2D8", "green", "#DDDD8C", "#AF9423", "#A84E0B")
@@ -27,11 +22,7 @@ color_bknd <- "#F4F4F4"
 list(
   tar_target(
     dv,
-<<<<<<< HEAD
-    read_csv('/Users/cnell/Documents/Projects/drought/in/dv_stats_202109_01_30.csv', col_types = "cTnnnnT")
-=======
     read_csv("https://labs.waterdata.usgs.gov/visualizations/data/flow_conditions_202204.csv", col_types = "cTnnnnT")
->>>>>>> a8e89f30460457029144756ff38029af713c2002
   ),
   tar_target(
     flow,
