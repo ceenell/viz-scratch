@@ -15,7 +15,7 @@ get_state_fips <- function(){
 theme_flowfacet <- function(base = 14, color_bknd){
   theme_classic(base_size = base) +
     theme(strip.background = element_blank(),
-          strip.text = element_text(size = 12, vjust = 1),
+          strip.text = element_text(size = 14, vjust = 1),
           strip.placement = "inside",
           strip.background.x = element_blank(),
           axis.line = element_blank(),
@@ -72,8 +72,8 @@ plot_national_area <- function(national_data, date_start, date_end, pal, color_b
          y="") +
     scale_fill_manual(values = rev(pal)) +
     scale_y_continuous(trans = "reverse",
-                       breaks = rev(c(0.05,0.08, 0.5, 0.75, 0.92, 0.95)), 
-                       labels = c("0%","","","","", "100%"),
+                       breaks = rev(c(0.05,0.08, 0.15, 0.5, 0.75, 0.92, 0.95)), 
+                       labels = c("0%","","","","", "","100%"),
                        sec.axis = dup_axis(
                          labels = sec_labels$cond
                        )) +
@@ -110,8 +110,7 @@ combine_plots <- function(file_out, plot_left, plot_right, width, height, color_
                                          color = color_bknd))
   
   ((plot_blank / plot_left / plot_blank) | plot_right) + 
-    plot_layout(widths = c(1, 4),
-                heights = c(.5, 3, .5, 4)) &
+    plot_layout(widths = c(1, 4)) &
     theme(panel.background = element_rect(fill = color_bknd,
                                           color = color_bknd),
           plot.background = element_rect(fill = color_bknd,

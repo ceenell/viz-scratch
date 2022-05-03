@@ -1,0 +1,32 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|iteration|parent|children|seconds|warnings|error
+plot_national_Area|function|d8438bf93fe2713a||||||||||||||
+usa_grid|stem|7de9d0223502e93b|b0d4966ee1cf29b6|f0d91192262c764b|-403472178||t18850.8252257357s|e9813d94b6888488|786|rds|vector|||0.032||
+define_plot_theme|function|56a6f813dd77bf49||||||||||||||
+add_dropshadow|function|2640f6866ffdda34||||||||||||||
+fips|stem|6e6443192e737a71|5a0398abeda11f77|db5b668dc870a308|-926945001||t18851.0626677694s|ef4c6559276e91f1|511|rds|vector|||0.083||
+dv|stem|9465b8729907092e|979346777143932f|7199b9143a2e7ccc|1024624953||t18906.1107442769s|53d7837ef0e09e16|2032159|rds|vector|||0.29|Unnamed col_types should have the same length as col_names. Using smaller of the two.|
+sites_state|stem|9fcf76a7bc5ae41e|228047538074c32c|6d06b19d763193fa|-1100674480||t18906.114665494s|735d605a63fed8c6|5772|rds|vector|||0.096||
+sites_national|stem|a78137871e88a3a6|8f220d3e8559c366|37045459cdc83ec4|-871820855||t18906.1146656146s|963debf989303649|304|rds|vector|||0.003||
+flow_national|stem|b92207aaac787816|c188d0a71159ba45|6672fd3ea36c145e|287139853||t18906.1146690518s|71206e4091e31666|3293|rds|vector|||0.038||
+plot_nat|stem|221296a85dd75b60|fa4eef71f1f15b46|79ed3f24e8528b23|1422325292||t18906.114672142s|6bd80af649a83a90|107305|rds|vector|||0.053|Vectorized input to element_text is not officially supported.Results may be unexpected or may change in future versions of ggplot2.|
+theme_flowfacet|function|ffc19c8c1351c6e7||||||||||||||
+add_flow_condition|function|65b88474ec74ac37||||||||||||||
+flow_by_day_by_state|function|3ca1bc549aed350e||||||||||||||
+site_count_national|function|110e038746c13095||||||||||||||
+flow_by_day|function|9d27dacf8e6a209b||||||||||||||
+make_carto_grid|function|35a3a2447e50d950||||||||||||||
+get_state_fips|function|0a2cbe31c2c7ad93||||||||||||||
+color_bknd|object|01d2ce1faac08b99||||||||||||||
+.Random.seed|object|c0a1aeaee22814e0||||||||||||||
+site_count_state|function|e3a1f270a132a7df||||||||||||||
+date_start|object|e2c3622e27c5c734||||||||||||||
+date_end|object|a3235b430bd369d1||||||||||||||
+pal_wetdry|object|3a9e71396573fc46||||||||||||||
+combine_plots|function|244e761daa679ea8||||||||||||||
+plot_state_cartogram|function|c73e0bd924c56c41||||||||||||||
+plot_national_area|function|a887b0edd30bac5b||||||||||||||
+flow|stem|9c4a31e2002458b3|9a77b9610c8ceddf|69a439ee466b8dde|1928985868||t18906.1206201685s|a778a3d6e653ad9c|2066455|rds|vector|||0.131||
+dv_site|stem|4edbad3b5129b264|929b9f368ac4c197|d2d10d1cd8f7860c|-1395680324||t18906.1206369746s|3546ba1e834db61b|25752|rds|vector|||1.424||
+flow_state|stem|89cea76f7cce6e5b|a5b553e205c794f4|caf40487ea9fd1eb|-869214365||t18906.1206395764s|da1e361bf6cc96bd|65484|rds|vector|||0.178||
+plot_cart|stem|d7492ead2ebdd59c|da6301e848052a3f|6ba14b6dfd35fb79|524024799||t18906.1206428275s|92de3d75d74c3925|308238|rds|vector|||0.054||
+flow_cartogram_svg|stem|af050da8784db9a7|e9b78532f92213e2|3a9ac1ce50fbbe8b|2128964887|flow_cartogram.svg|t18906.1208726156s|388bc9d7e6911aca|1046729|file|vector|||19.817||
