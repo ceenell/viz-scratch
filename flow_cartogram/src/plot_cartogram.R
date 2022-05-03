@@ -102,22 +102,58 @@ plot_national_area <- function(national_data, date_start, date_end, pal, color_b
 
 combine_plots <- function(file_out, plot_left, plot_right, width, height, color_bknd){
   
-  plot_blank <- ggplot()+
-    geom_blank()+ 
-    theme(panel.background = element_rect(fill = "blue",
-                                          color = color_bknd),
-          plot.background = element_rect(fill = color_bknd,
-                                         color = color_bknd))
+  # import fonts
+  font_legend <- 'Cutive Mono'
+  font_fam = 'Train One'
+  font_add_google(font_legend) 
+  font_add_google(font_fam) 
+  showtext_opts(dpi = 300)
+  showtext_auto(enable = TRUE)
   
-  ((plot_blank / plot_left / plot_blank) | plot_right) + 
-    plot_layout(widths = c(1, 4)) &
-    theme(panel.background = element_rect(fill = color_bknd,
-                                          color = color_bknd),
-          plot.background = element_rect(fill = color_bknd,
-                                         color = color_bknd))
+  # logo
+  usgs_logo <- magick::image_read('../logo/usgs_logo_white.png') %>%
+    magick::image_colorize(100, "black")
+  
+  plot_margin <- 0.025
+  
+  # background
+  canvas <- grid::rectGrob(
+    x = 0, y = 0, 
+    width = 16, height = 9,
+    gp = grid::gpar(fill = color_bknd, alpha = 1, col = color_bknd)
+  )
+  
+  ggdraw(ylim = c(0,1), 
+         xlim = c(0,1)) +
+    # a white background
+    draw_grob(canvas,
+              x = 0, y = 1,
+              height = 9, width = 16,
+              hjust = 0, vjust = 1) +
+    draw_plot(plot_left,
+              x = plot_margin,
+              y = 0.25,
+              height = 0.5 ,
+              width = 0.3-plot_margin) +
+    draw_plot(plot_right,
+              x = 0.32,
+              y = 0+plot_margin,
+              height = 1- plot_margin*2, 
+              width = 1-(0.3-plot_margin)) +
+    # draw title
+   draw_label(sprintf('%s %s\nSTREAMFLOW', "April", "2022"),
+              x = plot_margin, y = 1-plot_margin, 
+              fontface = "bold", 
+              size = 48, 
+              hjust = 0, 
+              vjust = 1,
+              fontfamily = font_fam,
+              lineheight = 1)  +
+   # add logo
+    draw_image(usgs_logo, x = plot_margin, y = plot_margin, width = 0.15, hjust = 0, vjust = 0, halign = 0, valign = 0)
   
   
-  ggsave(file_out, width = width, height = height)
+  ggsave(file_out, width = width, height = height, dpi = 300)
   return(file_out)
   
 }
