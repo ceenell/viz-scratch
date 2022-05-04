@@ -24,10 +24,8 @@ theme_flowfacet <- function(base = 14, color_bknd){
           axis.title = element_blank(),
           panel.border = element_blank(),
           plot.title = element_text(size = 18, face = "bold"),
-          plot.background = element_rect(fill = color_bknd,
-                                         color = color_bknd),
-          panel.background = element_rect(fill = color_bknd,
-                                          color = color_bknd),
+          plot.background = element_blank(),
+          panel.background = element_blank(),
           panel.spacing = unit(0, "pt"),
           legend.position = "none",
           plot.margin = margin(0, 0, 0, 0, "pt"))
@@ -96,16 +94,19 @@ plot_national_area <- function(national_data, date_start, date_end, pal, color_b
                    name = "National"
                  )) +
     guides(fill = guide_legend("")) +
-    coord_fixed(ratio = 28)
+    coord_fixed(ratio = 28, clip = "off")
   
   return(plot_nat)
 }
 
-combine_plots <- function(file_out, plot_left, plot_right, width, height, color_bknd){
+combine_plots <- function(file_out, plot_left, plot_right, date_start, width, height, color_bknd){
+  
+  plot_month <- lubridate::month(date_start)
+  plot_year <- lubridate::year(date_start)
   
   # import fonts
-  font_legend <- 'Roboto Mono'
-  font_add_google(font_legend, regular.wt = 300, bold.wt = 700)
+  font_legend <- 'B612 Mono'
+  font_add_google(font_legend)
   showtext_opts(dpi = 300)
   showtext_auto(enable = TRUE)
   
@@ -145,7 +146,7 @@ combine_plots <- function(file_out, plot_left, plot_right, width, height, color_
               height = 1- plot_margin*2, 
               width = 1-(0.3-plot_margin)) +
     # draw title
-   draw_label(sprintf('%s %s', "April", "2022"),
+   draw_label(sprintf('%s %s', plot_month, plot_year),
               x = plot_margin, y = 1-plot_margin*4, 
               size = 44, 
               hjust = 0, 

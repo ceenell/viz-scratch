@@ -66,6 +66,7 @@ list(
     combine_plots(file_out = "flow_cartogram.svg", 
                   plot_left = plot_nat, 
                   plot_right = plot_cart, 
+                  date_start,
                   width = 16, height = 9, color_bknd),
     format = "file"
   )
