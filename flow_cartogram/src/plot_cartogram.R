@@ -55,6 +55,7 @@ plot_state_cartogram <- function(state_data, fips, pal, usa_grid, color_bknd){
           panel.spacing.x = unit(6, "pt"),
           strip.text = element_text(vjust = -1))+
     coord_fixed(ratio = 28)
+
 }
 
 plot_national_area <- function(national_data, date_start, date_end, pal, color_bknd){
@@ -103,16 +104,19 @@ plot_national_area <- function(national_data, date_start, date_end, pal, color_b
 combine_plots <- function(file_out, plot_left, plot_right, width, height, color_bknd){
   
   # import fonts
-  font_legend <- 'Cutive Mono'
-  font_fam = 'Train One'
-  font_add_google(font_legend) 
-  font_add_google(font_fam) 
+  font_legend <- 'Roboto Mono'
+  font_add_google(font_legend, regular.wt = 300, bold.wt = 700)
   showtext_opts(dpi = 300)
   showtext_auto(enable = TRUE)
   
+  text_color <- "#444444"
+  
   # logo
   usgs_logo <- magick::image_read('../logo/usgs_logo_white.png') %>%
-    magick::image_colorize(100, "black")
+    magick::image_colorize(100, text_color)
+  
+  # streamflow title
+  title_flow <- magick::image_read('in/streamflow.png')
   
   plot_margin <- 0.025
   
@@ -130,27 +134,35 @@ combine_plots <- function(file_out, plot_left, plot_right, width, height, color_
               x = 0, y = 1,
               height = 9, width = 16,
               hjust = 0, vjust = 1) +
-    draw_plot(plot_left,
+    draw_plot(plot_left+theme(text = element_text(family = font_legend, color = text_color)),
               x = plot_margin,
               y = 0.25,
               height = 0.5 ,
               width = 0.3-plot_margin) +
-    draw_plot(plot_right,
+    draw_plot(plot_right+theme(text = element_text(family = font_legend, color = text_color)),
               x = 0.32,
               y = 0+plot_margin,
               height = 1- plot_margin*2, 
               width = 1-(0.3-plot_margin)) +
     # draw title
-   draw_label(sprintf('%s %s\nSTREAMFLOW', "April", "2022"),
-              x = plot_margin, y = 1-plot_margin, 
-              fontface = "bold", 
-              size = 48, 
+   draw_label(sprintf('%s %s', "April", "2022"),
+              x = plot_margin, y = 1-plot_margin*4, 
+              size = 44, 
               hjust = 0, 
               vjust = 1,
-              fontfamily = font_fam,
+              fontfamily = font_legend,
+              color = text_color,
               lineheight = 1)  +
+    # stylized streamflow title
+    draw_image(title_flow,
+               x = plot_margin,
+               y = 1-(6*plot_margin),
+               height = 0.1, 
+               width = 0.55,
+               hjust = 0,
+               vjust = 1) +
    # add logo
-    draw_image(usgs_logo, x = plot_margin, y = plot_margin, width = 0.15, hjust = 0, vjust = 0, halign = 0, valign = 0)
+    draw_image(usgs_logo, x = plot_margin, y = plot_margin, width = 0.1, hjust = 0, vjust = 0, halign = 0, valign = 0)
   
   
   ggsave(file_out, width = width, height = height, dpi = 300)
